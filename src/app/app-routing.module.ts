@@ -19,7 +19,7 @@ const routes: Routes = [
     children: [
       {path:"", component: ListComponent},
       {path: "create", component: FormComponent},
-      {path: "details", component: DetailComponent}
+      {path: "details", component: DetailComponent},
     ]
   },
   {
