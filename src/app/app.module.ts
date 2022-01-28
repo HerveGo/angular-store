@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -28,6 +28,7 @@ import { ListComponent } from './components/product/list/list.component';
 import { DetailComponent } from './components/product/detail/detail.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { AuthUserService } from './services/auth-user.service';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,10 @@ import { AuthUserService } from './services/auth-user.service';
     MatCardModule,
     MatProgressBarModule,
   ],
-  providers: [AuthUserService],
+  providers: [
+    AuthUserService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

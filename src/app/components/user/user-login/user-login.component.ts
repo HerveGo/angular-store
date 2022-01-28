@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class UserLoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private location: Location,
+    private router: Router,
     private authUserService: AuthUserService) { }
 
   ngOnInit(): void {
@@ -35,11 +37,13 @@ export class UserLoginComponent implements OnInit {
 
   onSubmit(): void {
     if( this.formGroup.invalid ) return;
-    console.log(this.formGroup.value);
     const email = this.formGroup.get("email")?.value;
     const password = this.formGroup.get("password")?.value;
     this.authUserService.login(email, password)
-      .subscribe(user => console.log(user)
+      .subscribe({
+          next: (user) => this.router.navigate(["/"]),
+          error: () => console.log("Erreur")
+          }
       );
   }
 
