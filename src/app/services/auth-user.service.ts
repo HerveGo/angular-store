@@ -18,12 +18,15 @@ export class AuthUserService {
     const data = localStorage.getItem("user_auth");
 
     if( data != undefined) {
+      console.log("Vous êtes identifié");
+      
       const authUser: AuthUser = JSON.parse(data);
       this.userSubject.next(authUser);
     }
   }
 
-  login(email: string, password: string): Observable<AuthUser> {
+  //login: admin@example.com & password: 0000
+  login(email: string, password: string): Observable<AuthUser | null> {
     const data = {
       email: email,
       password: password
@@ -31,6 +34,17 @@ export class AuthUserService {
 
     return this.http.post<JWT>(`${this.apiUrl}/login`, data)
     .pipe( tap( data => console.log(data)) )
-    .pipe( map(  ) );
+    .pipe( map( (data: JWT): AuthUser | null => {
+        const jwt: JWT = new JWT();
+        Object.assign(jwt, data);
+      
+        const user: AuthUser | null = jwt.getPayLoad();
+        if (user) {
+          localStorage.setItem("user_auth", JSON.stringify(user));
+          localStorage.setItem("jwt_token", JSON.stringify(jwt));
+          return user;
+        }
+        return null;
+      } ) );
   }
 }

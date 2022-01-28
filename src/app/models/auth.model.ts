@@ -1,5 +1,13 @@
 export class JWT {
     token: string = "";
+
+    getPayLoad(): AuthUser | null {
+        try {
+            return JSON.parse(atob(this.token.split(".")[1]));
+        } catch (e) {
+            return null;
+        }
+    }
 }
 
 export class AuthUser {

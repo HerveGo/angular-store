@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -26,6 +27,7 @@ import { FormComponent } from './components/product/form/form.component';
 import { ListComponent } from './components/product/list/list.component';
 import { DetailComponent } from './components/product/detail/detail.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
+import { AuthUserService } from './services/auth-user.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     ReactiveFormsModule,
     MatToolbarModule,
@@ -56,7 +59,7 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
     MatCardModule,
     MatProgressBarModule,
   ],
-  providers: [],
+  providers: [AuthUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
