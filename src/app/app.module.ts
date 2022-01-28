@@ -25,6 +25,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { FormComponent } from './components/product/form/form.component';
 import { ListComponent } from './components/product/list/list.component';
 import { DetailComponent } from './components/product/detail/detail.component';
+import { UserLoginComponent } from './components/user/user-login/user-login.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DetailComponent } from './components/product/detail/detail.component';
     ErrorComponent,
     FormComponent,
     ListComponent,
-    DetailComponent
+    DetailComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,

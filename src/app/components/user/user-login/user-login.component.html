@@ -1,0 +1,30 @@
+<mat-card class="card">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Enter your credentials</mat-card-subtitle>
+    <mat-card-content>
+        <form class="form" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>E-mail</mat-label>
+                <input type="email" formControlName="email" matInput #message maxlength="128" placeholder="example name@google.com">
+                <mat-hint align="end">{{message.value.length}} / 128</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="password" formControlName="password" matInput #message maxlength="256" placeholder="Enter your password">
+                <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+                <button type="submit" [disabled]="formGroup.invalid" mat-flat-button color="primary">Connection</button>
+                <button (click)="onCancel()" mat-flat-button color="secondary">Cancel</button>
+            </mat-card-actions>
+        </form>          
+    </mat-card-content>
+    
+    <mat-card-footer>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+
