@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DetailComponent } from './components/product/detail/detail.component';
 import { FormComponent } from './components/product/form/form.component';
 import { ListComponent } from './components/product/list/list.component';
+import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 
@@ -19,7 +20,7 @@ const routes: Routes = [
   {
     path: "products",
     children: [
-      {path:"", component: ListComponent},
+      {path: "", component: ListComponent},
       {path: "create", component: FormComponent},
       {path: "details", component: DetailComponent},
     ]
@@ -27,7 +28,8 @@ const routes: Routes = [
   {
     path: "users",
     children: [
-      {path:"", component: UserListComponent}
+      {path: "", component: UserListComponent},
+      {path: "edit", component: UserEditComponent}
     ]
   },
   {

@@ -1,0 +1,32 @@
+<mat-card class="card">
+    <mat-card-title>
+        <span *ngIf="mode == 'add'">Ajouter un utilisateur</span>
+        <span *ngIf="mode == 'update'">Modifier un utilisateur</span>
+    </mat-card-title>
+    <mat-card-subtitle>Entrer les informations</mat-card-subtitle>
+    <mat-card-content>
+        <form class="form" [formGroup]="formGroup" (ngSubmit)="submit()">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>E-mail</mat-label>
+                <input type="email" formControlName="email" matInput #message maxlength="128" placeholder="example name@google.com">
+                <mat-hint align="end">{{message.value.length}} / 128</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="password" formControlName="password" matInput #password maxlength="128" placeholder="Enter your password">
+                <mat-hint align="end">{{password.value.length}} / 128</mat-hint>
+            </mat-form-field>
+
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+                <button type="submit" [disabled]="formGroup.invalid" mat-flat-button color="primary">
+                    <span *ngIf="mode == 'add'">Ajouter</span>
+                    <span *ngIf="mode == 'update'">Modifier</span>
+                </button>
+                <button (click)="cancel()" mat-flat-button color="secondary">Cancel</button>
+            </mat-card-actions>
+        </form>          
+    </mat-card-content>
+  </mat-card>
+

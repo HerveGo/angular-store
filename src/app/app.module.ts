@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -30,6 +31,7 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
 import { AuthUserService } from './services/auth-user.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
     DetailComponent,
     UserLoginComponent,
     UserListComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
     MatCheckboxModule,
     MatCardModule,
     MatProgressBarModule,
+    MatTableModule
   ],
   providers: [
     AuthUserService,

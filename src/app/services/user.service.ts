@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -17,5 +17,10 @@ export class UserService {
 
   getAll(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(`${this.urlApi}/users`);
+  }
+
+  getUser(email: string): Observable<UserModel> {
+    let params = new HttpParams().set("email", email);
+    return this.http.get<UserModel>(`${this.urlApi}/users`, {params: params});
   }
 }
