@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DetailComponent } from './components/product/detail/detail.component';
 import { FormComponent } from './components/product/form/form.component';
 import { ListComponent } from './components/product/list/list.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 
 const routes: Routes = [
@@ -21,6 +22,12 @@ const routes: Routes = [
       {path:"", component: ListComponent},
       {path: "create", component: FormComponent},
       {path: "details", component: DetailComponent},
+    ]
+  },
+  {
+    path: "users",
+    children: [
+      {path:"", component: UserListComponent}
     ]
   },
   {

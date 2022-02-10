@@ -1,6 +1,9 @@
 export class ProductModel {
-    name: string ="";
+    id?: string = "";
+    name: string = "";
     description: string = "";
     active: boolean = true;
-    price: number = 0;
+    price: number = 0.0;
+    date_created: Date = new Date();
+    date_updated: Date = new Date();
 }
