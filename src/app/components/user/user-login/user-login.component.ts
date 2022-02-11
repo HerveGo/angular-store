@@ -21,12 +21,12 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      email: ["admin@example.com", [
+      email: ["", [
           Validators.required,
           Validators.email
         ]
       ],
-      password: ["0000", [
+      password: ["", [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(10)

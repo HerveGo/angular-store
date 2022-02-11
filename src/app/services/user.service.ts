@@ -15,12 +15,16 @@ export class UserService {
     private http:HttpClient
   ) { }
 
-  getAll(): Observable<UserModel[]> {
+  getAll(): Observable<UserModel[]> {    
     return this.http.get<UserModel[]>(`${this.urlApi}/users`);
   }
 
   getUser(email: string): Observable<UserModel> {
     let params = new HttpParams().set("email", email);
     return this.http.get<UserModel>(`${this.urlApi}/users`, {params: params});
+  }
+
+  createUser(user: UserModel): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.urlApi}/users`, user);
   }
 }
