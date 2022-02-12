@@ -33,7 +33,7 @@ import { AuthUserService } from './services/auth-user.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
-import { DialogDeleteUserComponent } from './components/dialog-delete-user/dialog-delete-user.component';
+import { DeleteUserComponent } from './components/dialogs/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { DialogDeleteUserComponent } from './components/dialog-delete-user/dialo
     UserLoginComponent,
     UserListComponent,
     UserEditComponent,
-    DialogDeleteUserComponent,
+    DeleteUserComponent,
   ],
   imports: [
     BrowserModule,

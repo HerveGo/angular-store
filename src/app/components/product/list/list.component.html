@@ -1,8 +1,23 @@
-<mat-card>
-    <mat-card-title>Products</mat-card-title>
-    <mat-card-subtitle>List of products</mat-card-subtitle>
-    <mat-card-actions>
-        <a href="#" routerLink="/products/create" mat-flat-button color="primary">Add New Product +</a>
-    </mat-card-actions>
-</mat-card>
-<br>
+<div class="container">
+    <div>
+        <mat-card class="title_card">
+            <mat-card-title>Produits</mat-card-title>
+            <mat-card-subtitle>Liste des produits</mat-card-subtitle>
+            <mat-card-actions *ngIf="authService.user">
+                <a href="#" routerLink="/products/create" mat-flat-button color="primary">Ajouter un produit</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="cards">
+        <mat-card class="card" *ngFor="let product of products">
+            <mat-card-title>{{product.name}}</mat-card-title>
+            <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+            <mat-card-content>Prix: {{product.price}} €</mat-card-content>
+            <mat-card-actions class="btn-row" *ngIf="authService.user">
+                <button (click)="showProduct()" mat-flat-button>Détails</button>
+                <button (click)="updateProduct()" mat-flat-button>Mettre à jour</button>
+                <button (click)="deleteProduct()" mat-flat-button>Supprimer</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

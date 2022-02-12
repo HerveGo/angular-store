@@ -4,13 +4,13 @@ import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-dialog-delete-user',
-  templateUrl: './dialog-delete-user.component.html',
-  styleUrls: ['./dialog-delete-user.component.scss']
+  templateUrl: './delete-user.component.html',
+  styleUrls: ['./delete-user.component.scss']
 })
-export class DialogDeleteUserComponent implements OnInit {
+export class DeleteUserComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<DialogDeleteUserComponent>,
+    public dialogRef: MatDialogRef<DeleteUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserModel,
   ) { }
 
