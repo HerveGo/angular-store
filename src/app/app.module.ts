@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -32,6 +33,7 @@ import { AuthUserService } from './services/auth-user.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
+import { DialogDeleteUserComponent } from './components/dialog-delete-user/dialog-delete-user.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { UserEditComponent } from './components/user/user-edit/user-edit.compone
     UserLoginComponent,
     UserListComponent,
     UserEditComponent,
+    DialogDeleteUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { UserEditComponent } from './components/user/user-edit/user-edit.compone
     MatCheckboxModule,
     MatCardModule,
     MatProgressBarModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
   ],
   providers: [
     AuthUserService,

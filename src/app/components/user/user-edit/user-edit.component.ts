@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { MustMatch } from 'src/app/validators/password.validator';
@@ -18,6 +18,10 @@ export class UserEditComponent implements OnInit {
   submitted: boolean = false;
 
   validationMessages = {
+    "name": [
+      { type: "required", message: "Le nom est obligatoire." },
+      { type: 'minlength', message: "Au moins 2 caractères." }
+    ],
     "email": [
       { type: "required", message: "L'adresse e-mail est obligatoire." },
       { type: 'email', message: "Entrez une adresse valide." }
@@ -34,7 +38,8 @@ export class UserEditComponent implements OnInit {
   };
 
   constructor(
-    private route:ActivatedRoute,
+    private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private fb: FormBuilder,
     private userService: UserService
@@ -42,15 +47,19 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit(): void {
     let email = this.route.snapshot.queryParamMap.get("email");
+    let username = this.route.snapshot.queryParamMap.get("name");
+    console.log(username);
+    
     if (email) this.mode = "update";
 
     this.formGroup = this.fb.group({
+      username: [{value: (this.mode=="update") ? username : "", disabled: false}, [Validators.required, Validators.minLength(2)]],
       email: [{value: (this.mode=="update") ? email : "", disabled: this.mode=="update"},
         [Validators.required, Validators.email]
       ],
       password: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(64)]],
       confirmPassword: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(64)]]
-    }, {validator: MustMatch("password", "confirmPassword")});
+    }, {validators: MustMatch("password", "confirmPassword")});
   }
 
   /**
@@ -68,20 +77,22 @@ export class UserEditComponent implements OnInit {
 
   }
 
+  /**
+   * Ajoute un nouvel utilisateur. Retourne à la liste une fois créé.
+   */
   addUser(): void {
     const newUser: UserModel = {
-      name: this.formGroup.controls["email"].value,
+      name: this.formGroup.controls["username"].value,
       email: this.formGroup.controls["email"].value,
-      role: 15,
+      role: 7,
       date_created: new Date(),
       date_updated: new Date()
     };
-    console.log(newUser);
-    this.userService.createUser(newUser).subscribe( () => console.log("new user created !"));
+    this.userService.createUser(newUser).subscribe( () => this.router.navigateByUrl("/users") );
   }
 
   updateUser(): void {
-
+    this.addUser();
   }
 
   cancel(): void {
