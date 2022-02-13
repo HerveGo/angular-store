@@ -16,4 +16,8 @@ export class ProductService {
   getAll(): Observable<ProductModel[]> {
     return this.http.get<ProductModel[]>(`${this.urlApi}/products`);
   }
+
+  deleteProduct(id: string): Observable<ProductModel> {
+    return this.http.delete<ProductModel>(`${this.urlApi}/products/${id}`);
+  }
 }

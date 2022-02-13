@@ -1,6 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -34,6 +38,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { DeleteUserComponent } from './components/dialogs/delete-user/delete-user.component';
+import { DeleteProductComponent } from './components/dialogs/delete-product/delete-product.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +54,7 @@ import { DeleteUserComponent } from './components/dialogs/delete-user/delete-use
     UserListComponent,
     UserEditComponent,
     DeleteUserComponent,
+    DeleteProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,10 +75,12 @@ import { DeleteUserComponent } from './components/dialogs/delete-user/delete-use
     MatProgressBarModule,
     MatTableModule,
     MatDialogModule,
+    MatTooltipModule,
   ],
   providers: [
     AuthUserService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'fr'}
   ],
   bootstrap: [AppComponent]
 })

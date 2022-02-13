@@ -1,10 +1,10 @@
 <mat-card class="card">
-    <mat-card-title>New Product Form</mat-card-title>
-    <mat-card-subtitle>Create your own product</mat-card-subtitle>
+    <mat-card-title>Nouveau Produit</mat-card-title>
+    <mat-card-subtitle>Enregistrer un nouveau produit</mat-card-subtitle>
     <mat-card-content>
         <form class="form" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
             <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Title</mat-label>
+                <mat-label>Titre</mat-label>
                 <input formControlName="title" matInput #title maxlength="128" placeholder="Title of your product...">
                 <mat-hint align="end">{{title.value.length}} / 128</mat-hint>
             </mat-form-field>
@@ -18,14 +18,11 @@
             <mat-checkbox formControlName="published" matInput>Published</mat-checkbox>
 
             <mat-divider inset></mat-divider>
-            <mat-card-actions>
-                <button mat-flat-button color="primary">Add</button>
+
+            <mat-card-actions align="end">
                 <button mat-flat-button color="secondary" (click)="onCancel()">Cancel</button>
+                <button mat-flat-button color="primary">Ajouter</button>
             </mat-card-actions>
         </form>          
     </mat-card-content>
-    
-    <mat-card-footer>
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </mat-card-footer>
   </mat-card>

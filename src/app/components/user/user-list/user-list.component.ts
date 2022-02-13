@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { DeleteUserComponent } from '../../dialogs/delete-user/delete-user.component';
 
 const route = "/users/edit";
@@ -47,7 +47,7 @@ export class UserListComponent implements OnInit {
    */
   toggleSelectRow(row: UserModel): void {
     
-      this.selectedRow = (this.selectedRow == row) ? null : row;
+      this.selectedRow = (this.selectedRow === row) ? null : row;
     
   }
 
@@ -63,7 +63,7 @@ export class UserListComponent implements OnInit {
 
   deleteDialog(): void {
     if (this.selectedRow) {
-      const dialogRef = this.dialog.open(DeleteUserComponent, {width: "250px", data: this.selectedRow});
+      const dialogRef = this.dialog.open(DeleteUserComponent, {width: "300px", data: this.selectedRow});
       dialogRef.afterClosed().subscribe(result => {
         console.log("Dialog closed " + result);
         if (result == true) {
@@ -71,7 +71,7 @@ export class UserListComponent implements OnInit {
           
           this.userService.deleteUser(this.selectedRow!.email).subscribe( () => this.refresh() );
         }
-        //this.refresh();
+        //this.refresh(); /!\ not here, but in the subscribe
       })
     }
   }

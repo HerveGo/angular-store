@@ -12,11 +12,17 @@
         <mat-card class="card" *ngFor="let product of products">
             <mat-card-title>{{product.name}}</mat-card-title>
             <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
-            <mat-card-content>Prix: {{product.price}} €</mat-card-content>
-            <mat-card-actions class="btn-row" *ngIf="authService.user">
-                <button (click)="showProduct()" mat-flat-button>Détails</button>
-                <button (click)="updateProduct()" mat-flat-button>Mettre à jour</button>
-                <button (click)="deleteProduct()" mat-flat-button>Supprimer</button>
+            <mat-card-content>Prix: {{product.price | currency:"EUR"}}</mat-card-content>
+            <mat-card-actions class="btn-row" *ngIf="authService.user" align="end">
+                <button (click)="showProduct(product)" mat-mini-fab color="primary"matTooltip="Détails du produit" [matTooltipShowDelay]="500" aria-label="Détails">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <button (click)="updateProduct(product)" mat-mini-fab color="primary" matTooltip="Modifier ce produit" [matTooltipShowDelay]="500" aria-label="Modifier">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button (click)="deleteProduct(product)" mat-mini-fab color="warn" matTooltip="Supprimer ce produit" [matTooltipShowDelay]="500" aria-label="Supprimer">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </mat-card-actions>
         </mat-card>
     </div>

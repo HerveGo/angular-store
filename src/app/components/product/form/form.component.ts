@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 export class FormComponent implements OnInit {
 
   formGroup!: FormGroup;
+  mode: "show" | "edit" | "new" = "show";
 
   constructor(
     private fb: FormBuilder,

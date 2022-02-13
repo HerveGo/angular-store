@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Supprimer un produit ?</h1>
+<mat-dialog-content>Vous allez supprimer : {{data.name}}</mat-dialog-content>
+<div mat-dialog-actions align="end">
+    <button mat-flat-button mat-dialog-close>Non</button>
+    <button mat-flat-button color="warn" [mat-dialog-close]="true">Oui</button>
+</div>
